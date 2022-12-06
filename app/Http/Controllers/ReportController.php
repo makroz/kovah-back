@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReportCreateRequest;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class ReportController extends Controller
   {
     return 'get-report ' . $report_id;
   }
-  public function create(Request $request)
+  public function create(ReportCreateRequest $request)
   {
     return 'generate-report';
   }
