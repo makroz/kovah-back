@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Report;
+use App\Event\ReportCreated;
 use Illuminate\Http\Request;
 use App\Jobs\CreateReportJob;
 use Illuminate\Http\Response;
@@ -37,8 +38,7 @@ class ReportController extends Controller
       $input = $request->all();
       $input['user_id'] = 1;
       $report = Report::create($input);
-      $ReportJob = new CreateReportJob($report);
-      $this->dispatch($ReportJob);
+      event(new ReportCreated($report));
       return response()->json(['status' => 'ok', 'data' => $report]);
     } catch (Exception $e) {
       return response()->json(['status' => 'error', 'errors' => [['message' => $e->getMessage()]]],);
