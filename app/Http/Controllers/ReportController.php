@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReportCreateRequest;
+use App\Jobs\CreateReportJob;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,9 @@ class ReportController extends Controller
   }
   public function create(ReportCreateRequest $request)
   {
+
+    $ReportJob = new CreateReportJob('prueba');
+    $this->dispatch($ReportJob);
     return 'generate-report';
   }
 }
