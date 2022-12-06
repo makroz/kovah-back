@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Http\JsonResponse;
+// use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -28,8 +28,8 @@ class ReportCreateRequest extends FormRequest
   {
     return [
       'title' => 'required',
-      'date_from'   => 'required|date|after_or_equal:01.01.1980|before_or_equal:01.01.2010|before_or_equal:date_to',
-      'date_to' => 'required|date|after_or_equal:01.01.1980|before_or_equal:01.01.2010|after_or_equal:date_from',
+      'date_from'   => 'bail|required|date|after_or_equal:01.01.1980|before_or_equal:01.01.2010|before_or_equal:date_to',
+      'date_to' => 'bail|required|date|after_or_equal:01.01.1980|before_or_equal:01.01.2010|after_or_equal:date_from',
     ];
   }
 
@@ -52,12 +52,12 @@ class ReportCreateRequest extends FormRequest
   {
     throw new HttpResponseException(response()->json([
       'errors' => $validator->errors(),
-      'status' => true
+      'status' => false
     ], 422));
   }
 
-  public function response(array $errors)
-  {
-    return new JsonResponse($errors, 422);
-  }
+  // public function response(array $errors)
+  // {
+  //   return new JsonResponse($errors, 422);
+  // }
 }
