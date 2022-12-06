@@ -15,7 +15,6 @@ use App\Http\Controllers\ReportController;
 |
 */
 
-Route::get('generate-report', [ReportController::class, 'create']);
 Route::post('generate-report', [ReportController::class, 'create']);
 Route::get('get-report/{report_id}', [ReportController::class, 'show']);
 Route::get('list-reports', [ReportController::class, 'index']);

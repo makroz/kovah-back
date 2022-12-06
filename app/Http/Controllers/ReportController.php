@@ -11,17 +11,26 @@ use App\Http\Requests\ReportCreateRequest;
 
 class ReportController extends Controller
 {
-  public function index(Request $request)
+  public function index()
   {
-    return 'list-reports';
-    $reports = Report::all();
-    return response()->json($reports);
+    try {
+      $reports = Report::select(['id', 'title', 'report_link', 'created_at'])->get();
+      return response()->json($reports);
+    } catch (Exception $e) {
+      return response()->json(['status' => 'error', 'errors' => [['message' => $e->getMessage()]]],);
+    }
   }
 
-  public function show(Request $request, $report_id)
+  public function show($report_id)
   {
-    return 'get-report ' . $report_id;
+    try {
+      $report = Report::find($report_id);
+      return response()->json(['status' => 'ok', 'data' => $report]);
+    } catch (Exception $e) {
+      return response()->json(['status' => 'error', 'errors' => [['message' => $e->getMessage()]]],);
+    }
   }
+
   public function create(ReportCreateRequest $request)
   {
     try {
