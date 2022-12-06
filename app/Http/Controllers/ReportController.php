@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReportCreateRequest;
-use App\Jobs\CreateReportJob;
+use Exception;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use App\Jobs\CreateReportJob;
+use Illuminate\Http\Response;
+use App\Http\Requests\ReportCreateRequest;
 
 class ReportController extends Controller
 {
@@ -22,9 +24,15 @@ class ReportController extends Controller
   }
   public function create(ReportCreateRequest $request)
   {
-
-    $ReportJob = new CreateReportJob('prueba');
-    $this->dispatch($ReportJob);
-    return 'generate-report';
+    try {
+      $input = $request->all();
+      $input['user_id'] = 1;
+      $report = Report::create($input);
+      $ReportJob = new CreateReportJob($report);
+      $this->dispatch($ReportJob);
+      return response()->json(['status' => 'ok', 'data' => $report]);
+    } catch (Exception $e) {
+      return response()->json(['status' => 'error', 'errors' => [['message' => $e->getMessage()]]],);
+    }
   }
 }

@@ -11,5 +11,8 @@ class Report extends Model
   protected $fillable = [
     'title',
     'report_link',
+    'date_from',
+    'date_to',
+    'user_id'
   ];
 }

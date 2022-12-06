@@ -39,12 +39,12 @@ class ReportCreateRequest extends FormRequest
       'title.required' => 'El titulo es obligatorio.',
       'date_from.required' => 'La fecha de Inicio es obligatoria',
       'date_from.date' => 'La fecha de Inicio debe ser una Fecha Válida',
-      'date_from.after_or_equal' => 'La fecha de Inicio debe ser mayor o igual a 01-01-1980',
-      'date_from.before_or_equal' => 'La fecha de Inicio debe ser menor o igual a 01-01-2010 y menor  a la fecha de Fin',
+      'date_from.after_or_equal' => 'La fecha de Inicio debe ser mayor o igual a 1980-01-01',
+      'date_from.before_or_equal' => 'La fecha de Inicio debe ser menor o igual a 2010-01-01 y menor  a la fecha de Fin',
       'date_to.required' => 'La fecha de Fin es obligatoria',
       'date_to.date' => 'La fecha de Fin debe ser una Fecha Válida',
-      'date_to.after_or_equal' => 'La fecha de Fin debe ser mayor o igual a 01-01-1980 y mayor a la fecha de Inicio',
-      'date_to.before_or_equal' => 'La fecha de Fin debe ser menor o igual a 01-01-2010',
+      'date_to.after_or_equal' => 'La fecha de Fin debe ser mayor o igual a 1980-01-01 y mayor a la fecha de Inicio',
+      'date_to.before_or_equal' => 'La fecha de Fin debe ser menor o igual a 2010-01-01',
     ];
   }
 

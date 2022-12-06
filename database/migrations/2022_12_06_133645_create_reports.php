@@ -16,7 +16,10 @@ return new class extends Migration
     Schema::create('reports', function (Blueprint $table) {
       $table->id();
       $table->string('title', 200);
-      $table->string('report_link');
+      $table->string('report_link')->nullable();
+      $table->date('date_from');
+      $table->date('date_to');
+      $table->foreignId('user_id')->constrained();
       $table->timestamps();
     });
   }
