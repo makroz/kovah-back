@@ -15,10 +15,12 @@ use App\Http\Controllers\ReportController;
 |
 */
 
-Route::post('generate-report', [ReportController::class, 'create']);
-Route::get('get-report/{report_id}', [ReportController::class, 'show']);
-Route::get('list-reports', [ReportController::class, 'index']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-  return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+  Route::post('generate-report', [ReportController::class, 'create']);
+  Route::get('get-report/{report_id}', [ReportController::class, 'show']);
+  Route::get('list-reports', [ReportController::class, 'index']);
 });
+
+// Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+//     return $request->user();
+// });
