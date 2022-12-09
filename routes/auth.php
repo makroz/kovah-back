@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 //                 ->middleware('guest')
 //                 ->name('register');
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-  ->middleware('guest')
-  ->name('login');
+// Route::post('/api/login', [AuthenticatedSessionController::class, 'store'])
+//   //->middleware('guest')
+//   ->name('login');
 
 // Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
 //                 ->middleware('guest')
@@ -32,6 +32,6 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 //                 ->middleware(['auth', 'throttle:6,1'])
 //                 ->name('verification.send');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-  ->middleware('auth')
-  ->name('logout');
+// Route::post('/api/logout', [AuthenticatedSessionController::class, 'destroy'])
+//   ->middleware('auth')
+//   ->name('logout');
